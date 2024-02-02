@@ -1,29 +1,31 @@
 package main
 
-import (
-    "fmt"
-)
+import "fmt"
 
-func FromTo(from int, to int) string {
-    if from < 0 || from > 99 || to < 0 || to > 99 {
-        return "Invalid\n"
-    }
+func FromTo(from, to int) string {
+	if from < 0 || from > 99 || to < 0 || to > 99 {
+		return "Invalid\n"
+	}
 
-    var result string
-    for i := from; i <= to; i++ {
-        if i < 10 {
-            result += fmt.Sprintf("0%d, ", i)
-        } else {
-            result += fmt.Sprintf("%02d, ", i)
-        }
-    }
+	var result string
+	for i := from; i <= to; i++ {
+		if i < 10 {
+			result += "0" + fmt.Sprint(i) + ", "
+		} else {
+			result += fmt.Sprint(i) + ", "
+		}
+	}
 
-    return result[:len(result)-2] + "\n"
+	if len(result) > 2 {
+		result = result[:len(result)-2] + "\n"
+	}
+
+	return result
 }
 
 func main() {
-    fmt.Print(FromTo(1, 10))
-    fmt.Print(FromTo(10, 1))
-    fmt.Print(FromTo(10, 10))
-    fmt.Print(FromTo(100, 10))
+	fmt.Print(FromTo(1, 10))
+	fmt.Print(FromTo(10, 1))
+	fmt.Print(FromTo(10, 10))
+	fmt.Print(FromTo(100, 10))
 }
